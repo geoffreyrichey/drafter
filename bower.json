@@ -1,0 +1,19 @@
+{
+  "name": "drafter",
+  "version": "0.0.0",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "~2.2.5",
+    "jquery": "~2.1.4"
+  }
+}

@@ -1,0 +1,164 @@
+@import "../bower_components/susy/sass/susy";
+
+$susy: (
+    columns: 12,
+    gutters: 1/4,
+);
+
+$bg     : #14152F;
+$bgd    : darken($bg, 2%);
+$bgl    : lighten($bg, 4%);
+$bgll   : lighten($bg, 8%);
+$hl     : #E86A0C;
+$c      : lighten($bg, 70%);
+
+body, ul, li, button {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: $bg url(/images/logo2.png) no-repeat 50% 50% fixed;
+    background-size: 80% 80%;
+    color: $c;
+    font-family: "Inconsolata";
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: darken($c, 20%);
+    display: block;
+
+    &:hover {
+        color: $hl;
+    }
+}
+
+.container {
+    @include container;
+}
+
+nav {
+    @include span(1);
+    background-color: $bgl;
+    text-align: center;
+    position: fixed;
+
+    .jayc {
+        background-color: $bgd;
+        padding: 8px 0;
+    }
+
+    .jay {
+        width: 60px;
+        height: 60px;
+        border-radius: 45px;
+        border: 3px solid $hl;
+        box-shadow: 0 0 10px 0 $c;
+    }
+
+    li {
+        list-style-type: none;
+        height: 80px;
+        line-height: 80px;
+        border-left: 5px solid transparent;
+
+        &:hover {
+            cursor: pointer;
+            color: lighten($c, 15%);
+        }
+
+        &.active {
+            background-color: $bgll;
+            color: lighten($c, 15%);
+            border-color: $hl
+        }
+    }
+}
+
+.content {
+
+    @include span(11 last);
+
+    .search {
+        margin-top: 16px;
+    }
+
+    input {
+        background-color: $bg;
+        border: 1px solid $bgll;
+        font-size: 24px;
+        padding: 8px;
+        width: 90%;
+        color: $c;
+        outline: none;
+        font-family: "Inconsolata";
+    }
+
+    button {
+        font-family: "Inconsolata";
+        background-color: $bgll;
+        border: $bgl;
+        font-size: 24px;
+        padding: 9px;
+        outline: none;
+        color: $hl;
+
+        &:hover {
+            cursor: pointer;
+
+        }
+
+        &:active {
+            background-color: lighten($bgll, 5%);
+        }
+    }
+
+    table {
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    th {
+        text-align: left;
+    }
+
+    td {
+        border-bottom: 1px solid $bgl;
+    }
+
+    .pname {
+        width: 66%;
+    }
+
+    .actions {
+        width: 85px;
+    }
+
+    .drafted {
+
+        color: lighten($bgll, 10%);
+
+        a {
+            color: lighten($bgll, 15%);
+        }
+
+        .draft {
+            background-color: $bgl; 
+            color: $bg;
+        }
+
+        .undraft {
+            background-color: $bgll; 
+            color: $hl;
+        }
+    }
+
+    .undraft {
+        background-color: $bgl;
+        color: $bg;
+    }
+}
+
