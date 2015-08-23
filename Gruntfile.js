@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'scss',
           src: ['*.scss'],
-          dest: 'public_html/css',
+          dest: 'public_html/dist/css',
           ext: '.css'
         }]
       },
@@ -24,10 +24,31 @@ module.exports = function(grunt) {
     coffee: {
       compile: {
         files: {
-          'public_html/js/main.js': 'coffee/main.coffee'
+          'public_html/dist/js/main.js': 'coffee/main.coffee'
         }
       }
     },   
+
+    // Concat
+    concat: {
+      options: {
+        separator: ";"
+      },
+      dist: {
+        src: ['bower_components/jquery/dist/jquery.min.js'],
+        dest: 'public_html/dist/js/libs.js'
+      }
+    },
+
+    // Uglify
+    uglify: {
+      dist: {
+        files: {
+          'public_html/dist/js/main.min.js': 'public_html/dist/js/main.js',
+          'public_html/dist/js/libs.min.js': 'public_html/dist/js/libs.js'
+        }
+      }
+    },
   
     watch: {
       sass: {
@@ -36,7 +57,7 @@ module.exports = function(grunt) {
       },
       coffee: {
         files: ['coffee/*.coffee'],
-        tasks: ['coffee']
+        tasks: ['coffee', 'uglify']
       },
       options: {
         livereload: true,
@@ -50,7 +71,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default task(s).
-  grunt.registerTask('default', ['sass', 'coffee', 'watch']);
+  grunt.registerTask('default', ['sass', 'coffee', 'concat', 'uglify', 'watch']);
 };
