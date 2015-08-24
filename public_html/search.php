@@ -20,7 +20,10 @@ if($_GET){
     }
 
     if( isset($_GET["name"]) ){
-        $search["name"] = new MongoRegex("/".$_GET["name"]."/i");
+        $search['$or'] = array( 
+            array("name" => new MongoRegex("/".$_GET["name"]."/i")),
+            array("team" => new MongoRegex("/".$_GET["name"]."/i")),
+        );
     }
 
     if( $search ){

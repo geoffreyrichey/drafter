@@ -1,5 +1,6 @@
 $ ->
 
+
     getPlayers = () ->
         phtml = ""
         params = {}
@@ -8,17 +9,21 @@ $ ->
         if name then params.name = name
         $.getJSON "search.php?#{$.param(params)}", (data) ->
             for player in data
-                phtml += "<tr #{if player.picked == true or player.picked == "true" then 'class="drafted"' else ''}>
-                    <td>#{player.rank}</td>
-                    <td>#{player.pos}</td>
-                    <td class=\"pname\"><a target=\"#{player._id['$id']}\" href=\"#{player.link}\">#{player.name}</a></td>
-                    <td>#{player.proj}</td>
-                    <td>#{player.bye}</td>
-                    <td class=\"actions\">
-                        <button type=\"button\" class=\"draft\" data-id=\"#{player._id['$id']}\">D</button>
-                        <button type=\"button\" class=\"undraft\" data-id=\"#{player._id['$id']}\">U</button>
-                    </td>
-                </tr>"
+                if drafted.checked or (player.picked != true and player.picked != "true")
+                    phtml += "<tr #{if player.picked == true or player.picked == "true" then 'class="drafted"' else ''}>
+                        <td>#{player.rank}</td>
+                        <td>#{player.pos}</td>
+                        <td class=\"pname\">
+                            <a target=\"#{player._id['$id']}\" href=\"#{player.link}\">#{player.name} - #{player.team}</a>
+                            #{if player.injury then '<span class="injury">'+player.injury+'<span>' else ''}
+                        </td>
+                        <td>#{player.proj.toFixed(2)}</td>
+                        <td>#{player.bye}</td>
+                        <td class=\"actions\">
+                            <button type=\"button\" class=\"draft\" data-id=\"#{player._id['$id']}\">D</button>
+                            <button type=\"button\" class=\"undraft\" data-id=\"#{player._id['$id']}\">U</button>
+                        </td>
+                    </tr>"
 
             $('#players').html(phtml)
 
@@ -42,7 +47,8 @@ $ ->
         $.post "search.php", { id: id, picked: false }, () ->
             getPlayers()
 
-
+    drafted = document.getElementById('drafted')
+    $(drafted).click () -> getPlayers()
 
     getPlayers()
 

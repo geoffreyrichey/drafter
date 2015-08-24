@@ -36,6 +36,10 @@ a {
     }
 }
 
+label {
+    font-size: 14px;
+}
+
 .container {
     @include container;
 }
@@ -61,8 +65,8 @@ nav {
 
     li {
         list-style-type: none;
-        height: 80px;
-        line-height: 80px;
+        height: 70px;
+        line-height: 70px;
         border-left: 5px solid transparent;
 
         &:hover {
@@ -75,6 +79,12 @@ nav {
             color: lighten($c, 15%);
             border-color: $hl
         }
+    }
+
+    .options {
+        border-top: 1px solid $bg;
+        border-bottom: 1px solid $bg;
+        padding: 6px 0 12px 0;
     }
 }
 
@@ -123,6 +133,7 @@ nav {
 
     th {
         text-align: left;
+        color: lighten($c, 15%);
     }
 
     td {
@@ -131,6 +142,11 @@ nav {
 
     .pname {
         width: 66%;
+    }
+
+    .injury {
+        font-size: 14px;
+        color: red;
     }
 
     .actions {
@@ -153,6 +169,10 @@ nav {
         .undraft {
             background-color: $bgll; 
             color: $hl;
+        }
+
+        .injury {
+            color: darken(red, 20%);
         }
     }
 
